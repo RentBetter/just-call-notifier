@@ -63,11 +63,15 @@ final class JustCallTransport extends AbstractTransport
         $endpoint = sprintf('https://%s/v2/texts/new', $this->getEndpoint());
         $response = $this->client->request('POST', $endpoint, [
             'auth_basic' => $this->apiKey . ':' . $this->apiSecret,
-            'body' => [
+            'headers' => [
+                'Content-Type' => 'application/json',
+                'Accept' => 'application/json',
+            ],
+            'body' => (string)json_encode([
                 'justcall_number' => $from,
                 'contact_number' => $message->getPhone(),
                 'body' => $message->getSubject(),
-            ],
+            ]),
         ]);
 
         try {

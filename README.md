@@ -10,13 +10,13 @@ Installation
 1. Install package using composer
 
 ```bash
-composer require rentbetter/just-call-notifier@^6.1
+composer require rentbetter/just-call-notifier:^6.1
 ```
 
 2. Add your JustCall DSN to your environment variables, e.g. in `.env`
 
 ```
-JUST_CALL_DSN=justCall://API_KEY:API_SECRET@default
+JUST_CALL_DSN=justCall://API_KEY:API_SECRET@default?from=FROM
 ```
 
 3. Register the `JustCallTransportFactory` in your `services.yaml`
@@ -44,12 +44,13 @@ DSN example
 -----------
 
 ```
-JUST_CALL_DSN=justCall://API_KEY:API_SECRET@default
+JUST_CALL_DSN=justCall://API_KEY:API_SECRET@default?from=FROM
 ```
 
 where:
  - `API_KEY` is your JustCall api key
  - `API_SECRET` is your JustCall api secret
+ - `FROM` is your sender, E.164 without the leading +
 
 
 Resources
