@@ -64,8 +64,9 @@ final class JustCallTransport extends AbstractTransport
         $response = $this->client->request('POST', $endpoint, [
             'auth_basic' => $this->apiKey . ':' . $this->apiSecret,
             'headers' => [
-                'Content-Type' => 'application/json',
+                'Authorization' => "{$this->apiKey}:{$this->apiSecret}",
                 'Accept' => 'application/json',
+                'Content-Type' => 'application/json',
             ],
             'body' => (string)json_encode([
                 'justcall_number' => $from,
