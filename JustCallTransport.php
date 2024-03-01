@@ -81,7 +81,7 @@ final class JustCallTransport extends AbstractTransport
             throw new TransportException('Could not reach the remote JustCall server.', $response, 0, $e);
         }
 
-        if (200 !== $statusCode) {
+        if (!in_array($statusCode, [200, 201])) {
             $error = $response->toArray(false);
 
             throw new TransportException('Unable to send the SMS: [' . $statusCode . '] ' . json_encode($error), $response);
@@ -90,7 +90,7 @@ final class JustCallTransport extends AbstractTransport
         $success = $response->toArray(false);
 
         $sentMessage = new SentMessage($message, (string)$this);
-        $sentMessage->setMessageId($success['id']);
+        $sentMessage->setMessageId($success['data'][0]['id']);
 
         return $sentMessage;
     }
