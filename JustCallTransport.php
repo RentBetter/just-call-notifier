@@ -33,8 +33,8 @@ final class JustCallTransport extends AbstractTransport
         private readonly string $apiKey,
         private readonly string $apiSecret,
         private readonly string $defaultFrom,
-        HttpClientInterface $client = null,
-        EventDispatcherInterface $dispatcher = null,
+        ?HttpClientInterface $client = null,
+        ?EventDispatcherInterface $dispatcher = null,
     )
     {
         parent::__construct($client, $dispatcher);
